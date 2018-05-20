@@ -92,7 +92,37 @@ public class MyTest {
      * 4.1.6 使用多个Condition 实现通知部分线程
      */
     @Test
-    public void test6() {
-        // TODO
+    public void test6() throws InterruptedException {
+        MyService5 service = new MyService5();
+        ThreadA5 a = new ThreadA5(service);
+        a.setName("A");
+        a.start();
+
+        ThreadB5 b = new ThreadB5(service);
+        b.setName("B");
+        b.start();
+        Thread.sleep(3000);
+        service.signalAll_A();
+    }
+
+    /**
+     * 4.1.7 实现生产消费者模式
+     * 4.1.8 多对多交替打印
+     */
+    @Test
+    public void test7() throws InterruptedException {
+
+        MyService6 service = new MyService6();
+
+        ThreadA6[] aa = new ThreadA6[10];
+        ThreadB6[] bb = new ThreadB6[10];
+
+        for (int i = 0; i < 10; i++) {
+            aa[i] = new ThreadA6(service);
+            bb[i] = new ThreadB6(service);
+
+            aa[i].start();
+            bb[i].start();
+        }
     }
 }
