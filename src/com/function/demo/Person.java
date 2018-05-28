@@ -13,6 +13,16 @@ public class Person {
 
 	private Integer sex;
 
+	Person(){}
+
+	Person(Long id, String name, Integer sex) {
+
+		this.id = id;
+		this.name = name;
+		this.sex = sex;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
