@@ -1,5 +1,8 @@
 package com.thread.chapter01;
 
+/**
+ * 暂停线程
+ */
 public class Test6 {
 
     public static void main(String[] args) {
@@ -83,7 +86,7 @@ public class Test6 {
             Thread t1 = new Thread() {
                 @Override
                 public void run() {
-                    object.setValue("a","aa");
+                    object.setValue("a", "aa");
                 }
             };
 
@@ -100,6 +103,69 @@ public class Test6 {
             t2.start();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+}
+
+class MyObject {
+    private String username = "1";
+    private String password = "11";
+
+    public void setValue(String username, String password) {
+        this.username = username;
+        if (Thread.currentThread().getName().equals("a")) {
+            System.out.println("停止a线程");
+            Thread.currentThread().suspend();
+        }
+        this.password = password;
+    }
+
+    public void printValue() {
+        System.out.println(username + " -> " + password);
+    }
+}
+
+class SynchronizedObject2 {
+
+    synchronized public void printString() {
+        System.out.println("begin");
+        if (Thread.currentThread().getName().equals("a")) {
+            System.out.println("a线程永远 suspend了！");
+            Thread.currentThread().suspend();
+        }
+        System.out.println("end");
+    }
+}
+
+class MyThread18 extends Thread {
+
+    private long i = 0;
+
+    public long getI() {
+        return i;
+    }
+
+    public void setI(long i) {
+        this.i = i;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            i++;
+        }
+    }
+}
+
+class MyThread19 extends Thread {
+
+    private long i = 0;
+
+    @Override
+    public void run() {
+        while (true) {
+            i++;
+            System.out.println(i);
         }
     }
 }

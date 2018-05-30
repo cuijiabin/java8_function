@@ -1,5 +1,8 @@
 package com.thread.chapter01;
 
+/**
+ * 停止线程
+ */
 public class Test5 {
 
     public static void main(String[] args) {
@@ -134,5 +137,154 @@ public class Test5 {
         }
 
         System.out.println("end!");
+    }
+}
+
+class MyThread11 extends Thread {
+
+    @Override
+    public void run() {
+        super.run();
+        for (int i = 0; i < 50000; i++) {
+            System.out.println("i=" + (i + 1));
+        }
+    }
+}
+
+class MyThread12 extends Thread {
+
+    @Override
+    public void run() {
+        super.run();
+        for (int i = 0; i < 500000; i++) {
+            if (this.isInterrupted()) {
+                System.out.println("已经是停止状态了！我要退出了！");
+                break;
+            }
+            System.out.println("i=" + (i + 1));
+        }
+
+        System.out.println("我被输出，如果此代码是for又继续运行，线程并未停止！");
+    }
+}
+
+class MyThread13 extends Thread {
+
+    @Override
+    public void run() {
+        super.run();
+        try {
+            for (int i = 0; i < 500000; i++) {
+                if (this.isInterrupted()) {
+                    System.out.println("已经是停止状态了！我要退出了！");
+
+                    throw new InterruptedException("中断线程异常");
+                }
+                System.out.println("i=" + (i + 1));
+            }
+
+            System.out.println("我被输出，如果此代码是for又继续运行，线程并未停止！");
+        } catch (InterruptedException e) {
+            System.out.println("进MyThread.java类run方法中的catch了！");
+            e.printStackTrace();
+        }
+    }
+}
+
+class MyThread14 extends Thread {
+
+    @Override
+    public void run() {
+        super.run();
+        try {
+            System.out.println("run begin");
+            Thread.sleep(200000);
+            System.out.println("run end");
+        } catch (InterruptedException e) {
+            System.out.println("在沉睡中被停止！进入catch了！ " + this.isInterrupted());
+            e.printStackTrace();
+        }
+    }
+}
+
+class MyThread15 extends Thread {
+
+    private int i = 0;
+
+    @Override
+    public void run() {
+        super.run();
+        try {
+            while (true) {
+                i++;
+                System.out.println("i = " + i);
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("在沉睡中被停止！进入catch了！ " + this.isInterrupted());
+            e.printStackTrace();
+        }
+    }
+}
+
+class SynchronizedObject {
+    private String username = "a";
+    private String password = "aa";
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    synchronized public void printString(String username, String password) {
+
+        try {
+            this.username = username;
+            Thread.sleep(100000);
+            this.password = password;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class MyThread16 extends Thread {
+
+    private SynchronizedObject object;
+
+    public MyThread16(SynchronizedObject object) {
+        super();
+        this.object = object;
+    }
+
+    @Override
+    public void run() {
+        object.printString("b", "bb");
+    }
+}
+
+class MyThread17 extends Thread {
+
+    @Override
+    public void run() {
+        while (true) {
+            if (this.isInterrupted()) {
+                System.out.println("停止了");
+                return;
+            }
+
+            System.out.println("timer=" + System.currentTimeMillis());
+        }
     }
 }
