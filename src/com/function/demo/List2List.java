@@ -30,8 +30,20 @@ public class List2List {
     public void extractList() {
 
         // 先转map 然后转list
-        List<List<Person>> list =  pList.stream().collect(Collectors.groupingBy(Person::getSex)).values().stream().collect(Collectors.toList());
+        List<List<Person>> list = pList.stream().collect(Collectors.groupingBy(Person::getSex)).values().stream().collect(Collectors.toList());
         list.forEach(l -> System.out.println(l));
+
+    }
+
+    @Test
+    public void listOfList2List() {
+
+        // 先转map 然后转list
+        List<List<Person>> list = pList.stream().collect(Collectors.groupingBy(Person::getSex)).values().stream().collect(Collectors.toList());
+        list.forEach(l -> System.out.println(l));
+
+        List<Person> ps = list.stream().flatMap(l -> l.stream()).collect(Collectors.toList());
+        ps.forEach(l -> System.out.println(l));
 
     }
 }

@@ -24,13 +24,13 @@ public class TestDemo {
 
     /**
      * 测试线程的构造方法
-     *
+     * <p>
      * 单元测试与main方法是有区别的
-     *
+     * <p>
      * 最后查了好多文章资料还看了源代码，
-     *
+     * <p>
      * 得出结论Junit测试时也是用的main方法 main方法停止线程就会停止，所以多线程时慎用Junit测试
-     *
+     * <p>
      * 解决办法 join 等待子线程结束后执行
      */
     @Test
@@ -68,4 +68,33 @@ public class TestDemo {
             e.printStackTrace();
         }
     }
+}
+
+class MyThread1 extends Thread {
+
+    public MyThread1() {
+        System.out.println("构造方法的打印：" + Thread.currentThread().getName());
+    }
+
+    @Override
+    public void run() {
+        System.out.println("run方法的打印：" + Thread.currentThread().getName());
+    }
+}
+
+class MyThread2 extends Thread {
+
+    @Override
+    public void run() {
+        try {
+            for (int i = 0; i < 10; i++) {
+                int time = (int) (Math.random() * 1000);
+                Thread.sleep(time);
+                System.out.println("run=" + Thread.currentThread().getName());
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
