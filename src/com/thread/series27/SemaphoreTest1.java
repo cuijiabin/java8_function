@@ -21,9 +21,15 @@ public class SemaphoreTest1 {
 }
 
 class MyThread extends Thread {
-    // 信号量
+
+    /**
+     * 信号量
+     */
     private volatile Semaphore sem;
-    // 申请信号量的大小
+
+    /**
+     * 申请信号量的大小
+     */
     private int count;
 
     MyThread(Semaphore sem, int count) {
@@ -31,6 +37,7 @@ class MyThread extends Thread {
         this.count = count;
     }
 
+    @Override
     public void run() {
         try {
             // 从信号量中获取count个许可

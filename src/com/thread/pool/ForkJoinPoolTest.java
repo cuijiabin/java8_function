@@ -14,14 +14,20 @@ public class ForkJoinPoolTest {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         // 提交可分解的PrintTask任务
         forkJoinPool.submit(new PrintTask(0, 200));
-        forkJoinPool.awaitTermination(2, TimeUnit.SECONDS);//阻塞当前线程直到 ForkJoinPool 中所有的任务都执行结束
+        //阻塞当前线程直到 ForkJoinPool 中所有的任务都执行结束
+        forkJoinPool.awaitTermination(2, TimeUnit.SECONDS);
         // 关闭线程池
         forkJoinPool.shutdown();
     }
 
-    //RecursiveAction为ForkJoinTask的抽象子类，没有返回值的任务
+    /**
+     * RecursiveAction为ForkJoinTask的抽象子类，没有返回值的任务
+     */
     static class PrintTask extends RecursiveAction {
-        // 每个"小任务"最多只打印50个数
+
+        /**
+         * 每个"小任务"最多只打印50个数
+         */
         private static final int MAX = 50;
 
         private int start;

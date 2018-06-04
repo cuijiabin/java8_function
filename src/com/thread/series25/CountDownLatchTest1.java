@@ -3,7 +3,9 @@ package com.thread.series25;
 import java.util.concurrent.CountDownLatch;
 
 public class CountDownLatchTest1 {
+
     private static int LATCH_SIZE = 5;
+
     private static CountDownLatch doneSignal;
 
     public static void main(String[] args) {
@@ -26,6 +28,8 @@ public class CountDownLatchTest1 {
     }
 
     static class InnerThread extends Thread {
+
+        @Override
         public void run() {
             try {
                 Thread.sleep(1000);
