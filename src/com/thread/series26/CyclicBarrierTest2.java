@@ -10,6 +10,7 @@ public class CyclicBarrierTest2 {
     public static void main(String[] args) {
 
         cb = new CyclicBarrier(SIZE, new Runnable() {
+            @Override
             public void run() {
                 System.out.println("CyclicBarrier's parties is: " + cb.getParties());
             }
@@ -22,6 +23,7 @@ public class CyclicBarrierTest2 {
     }
 
     static class InnerThread extends Thread {
+        @Override
         public void run() {
             try {
                 System.out.println(Thread.currentThread().getName() + " wait for CyclicBarrier.");

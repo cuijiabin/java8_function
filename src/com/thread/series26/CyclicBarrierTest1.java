@@ -18,6 +18,8 @@ public class CyclicBarrierTest1 {
     }
 
     static class InnerThread extends Thread {
+
+        @Override
         public void run() {
             try {
                 System.out.println(Thread.currentThread().getName() + " wait for CyclicBarrier.");

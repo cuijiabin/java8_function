@@ -9,6 +9,7 @@ import java.util.Stack;
  * Created by Bob on 15/12/13.
  */
 public class SortStack {
+
     public static void sortStackByStack(Stack<Integer> stack) {
         Stack<Integer> help = new Stack<>();
         while (!stack.isEmpty()) {
