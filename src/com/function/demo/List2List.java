@@ -10,6 +10,7 @@ public class List2List {
 
     private List<Person> pList = Arrays.asList(new Person(1L, "person1", 1),
             new Person(2L, "person2", 2),
+            new Person(2L, "person2", 2),
             new Person(3L, "person3", 1),
             new Person(4L, "person4", 2),
             new Person(5L, "person5", 2),
@@ -45,5 +46,16 @@ public class List2List {
         List<Person> ps = list.stream().flatMap(l -> l.stream()).collect(Collectors.toList());
         ps.forEach(l -> System.out.println(l));
 
+    }
+
+    /**
+     * 如何去重？
+     */
+    @Test
+    public void duplicateList() {
+
+        List<Person> list = pList.stream().distinct().collect(Collectors.toList());
+
+        list.forEach(id -> System.out.println(id));
     }
 }
