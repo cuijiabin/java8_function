@@ -1,5 +1,7 @@
 package com.function.demo;
 
+import com.google.common.base.Objects;
+
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -41,5 +43,7 @@ public class Temp {
         String uuid=UUID.randomUUID().toString().replaceAll("-", "");
         System.out.println(uuid);
         System.out.println(UUID.randomUUID().toString());
+
+        System.out.println(Objects.equal("a", "a"));
     }
 }

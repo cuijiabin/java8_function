@@ -16,4 +16,6 @@ public class StreamCalculate {
         String result = Stream.of("function1", "function2", "function3", "function4", "function5").collect(Collectors.joining("|"));
         System.out.println(result);
     }
+
+    // TODO 1.获取平均值 2.求和 3.
 }
