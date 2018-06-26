@@ -54,8 +54,23 @@ public class List2List {
     @Test
     public void duplicateList() {
 
-        List<Person> list = pList.stream().distinct().collect(Collectors.toList());
+        List<String> testList = Arrays.asList("123","123","123","123","456");
+
+        List<String> list = testList.stream().distinct().collect(Collectors.toList());
 
         list.forEach(id -> System.out.println(id));
+
+
+
+        // 获取重复单号
+        List<String> duplicateList = testList.stream()
+                .collect(Collectors.toMap(e -> e, e -> 1, Integer::sum))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList());
+
+        System.out.println("+++++++++++++++++++++++++++++");
+        duplicateList.forEach(id -> System.out.println(id));
     }
 }
