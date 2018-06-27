@@ -17,5 +17,15 @@ public class StreamCalculate {
         System.out.println(result);
     }
 
-    // TODO 1.获取平均值 2.求和 3.
+    @Test
+    public void avgCal() {
+        double result = Stream.of(1, 2, 3, 4, 5).mapToInt(s->s).average().getAsDouble();
+        System.out.println(result);
+    }
+
+    @Test
+    public void sumCal() {
+       int result = Stream.of(1, 2, 3, 4, 5).reduce(0, (x, y) -> x + y).intValue();
+        System.out.println(result);
+    }
 }

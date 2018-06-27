@@ -68,14 +68,8 @@ public class Person {
 	}
 	
 	public static void main(String[] args) {
-		BigDecimal val = new BigDecimal("15.6");
-		Map<Integer,Integer> map = new HashMap<>(1);
-		map.put(1,1);
-		System.out.println(val);
-		System.out.println(map);
-		System.out.println(1 << 30);
 
-		System.out.println(tableSizeFor(65));
+		System.out.println(tableSizeFor(129));
 	}
 
 }
