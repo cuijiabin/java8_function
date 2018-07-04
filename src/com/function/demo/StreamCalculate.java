@@ -28,4 +28,6 @@ public class StreamCalculate {
        int result = Stream.of(1, 2, 3, 4, 5).reduce(0, (x, y) -> x + y).intValue();
         System.out.println(result);
     }
+
+    // TODO 取出最大值 最小值
 }
