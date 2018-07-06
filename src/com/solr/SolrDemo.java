@@ -17,7 +17,8 @@ import java.util.stream.Collectors;
 
 public class SolrDemo {
 
-    private static SolrClient lbHttpSolrClient = new LBHttpSolrClient.Builder().withBaseSolrUrls("http://172.16.96.119:8983/solr/popsolr/", "http://172.16.96.119:7574/solr/popsolr/").build();
+    static String[] baseUrl = {"http://172.16.96.119:8983/solr/popsolr/", "http://172.16.96.119:7574/solr/popsolr/"};
+    private static SolrClient lbHttpSolrClient = new LBHttpSolrClient.Builder().withBaseSolrUrls(baseUrl).build();
 
 
     @Test
@@ -115,13 +116,13 @@ public class SolrDemo {
             System.out.println(response);
             SolrDocumentList list = response.getResults();
 
-            if(list.getNumFound() <1 ){
+            if (list.getNumFound() < 1) {
 
-                return ;
+                return;
             }
             System.out.println(response.getFacetDate("title"));
 
-            List<String> titleList = list.stream().map(sd -> sd.get("title").toString()).map(s -> s.substring(1,s.length()-1)).collect(Collectors.toList());
+            List<String> titleList = list.stream().map(sd -> sd.get("title").toString()).map(s -> s.substring(1, s.length() - 1)).collect(Collectors.toList());
 
             System.out.println(titleList);
         } catch (SolrServerException e) {
