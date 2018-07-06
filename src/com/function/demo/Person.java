@@ -15,9 +15,9 @@ public class Person {
 
 	private Integer sex;
 
-	Person(){}
+	public Person(){}
 
-	Person(Long id, String name, Integer sex) {
+	public Person(Long id, String name, Integer sex) {
 
 		this.id = id;
 		this.name = name;

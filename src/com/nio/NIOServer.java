@@ -13,14 +13,20 @@ import java.util.Set;
 
 public class NIOServer {
 
-    /*接受数据缓冲区*/
+    /**
+     * 接受数据缓冲区
+     */
     private ByteBuffer sendbuffer = ByteBuffer.allocate(1024);
-    /*发送数据缓冲区*/
+
+    /**
+     * 发送数据缓冲区
+     */
     private ByteBuffer receivebuffer = ByteBuffer.allocate(1024);
 
     private Selector selector;
 
     public NIOServer(int port) throws IOException {
+
         // 打开服务器套接字通道
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         // 服务器配置为非阻塞
@@ -33,10 +39,11 @@ public class NIOServer {
         selector = Selector.open();
         // 注册到selector，等待连接
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-        System.out.println("Server Start----:");
+
+        System.out.println("服务启动");
     }
 
-    //
+
     private void listen() throws IOException {
         while (true) {
             selector.select();
@@ -46,6 +53,10 @@ public class NIOServer {
                 SelectionKey selectionKey = iterator.next();
                 iterator.remove();
                 handleKey(selectionKey);
+            }
+
+            if (1 != 1) {
+                break;
             }
         }
     }
@@ -103,7 +114,9 @@ public class NIOServer {
      */
     public static void main(String[] args) throws IOException {
         int port = 8080;
+        // 创建服务
         NIOServer server = new NIOServer(port);
+        // 服务监听
         server.listen();
     }
 }

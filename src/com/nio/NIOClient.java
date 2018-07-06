@@ -10,9 +10,15 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class NIOClient {
-    /*接受数据缓冲区*/
+
+    /**
+     * 接受数据缓冲区
+     */
     private static ByteBuffer sendbuffer = ByteBuffer.allocate(1024);
-    /*发送数据缓冲区*/
+
+    /**
+     * 发送数据缓冲区
+     */
     private static ByteBuffer receivebuffer = ByteBuffer.allocate(1024);
 
     public static void main(String[] args) throws IOException {
@@ -35,7 +41,7 @@ public class NIOClient {
         String sendText;
         int count=0;
 
-        while (true) {
+        for (int i = 0; i<100; i++) {
             //选择一组键，其相应的通道已为 I/O 操作准备就绪。
             //此方法执行处于阻塞模式的选择操作。
             selector.select();
