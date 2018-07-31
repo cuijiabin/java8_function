@@ -73,4 +73,6 @@ public class List2List {
         System.out.println("+++++++++++++++++++++++++++++");
         duplicateList.forEach(id -> System.out.println(id));
     }
+
+    // 各种过滤操作
 }

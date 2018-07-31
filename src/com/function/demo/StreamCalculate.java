@@ -2,6 +2,7 @@ package com.function.demo;
 
 import org.junit.Test;
 
+import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -29,5 +30,15 @@ public class StreamCalculate {
         System.out.println(result);
     }
 
-    // TODO 取出最大值 最小值
+    @Test
+    public void maxCal() {
+        int result = Stream.of(1, 2, 3, 4, 5).max(Comparator.comparing(Integer::valueOf)).get();
+        System.out.println(result);
+    }
+
+    @Test
+    public void minCal() {
+        int result = Stream.of(1, 2, 3, 4, 5).min(Comparator.comparing(Integer::valueOf)).get();
+        System.out.println(result);
+    }
 }
