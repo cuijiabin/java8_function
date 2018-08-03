@@ -75,4 +75,18 @@ public class List2List {
     }
 
     // 各种过滤操作
+
+    /**
+     * 排序操作
+     */
+    @Test
+    public void sortList() {
+
+        List<String> testList = Arrays.asList("123","789","永久","123","456");
+
+        List<String> list = testList.stream().sorted().collect(Collectors.toList());
+
+        list.forEach(id -> System.out.println(id));
+
+    }
 }
