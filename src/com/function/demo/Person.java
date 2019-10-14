@@ -3,6 +3,7 @@ package com.function.demo;
 import com.alibaba.fastjson.JSON;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,6 +71,7 @@ public class Person {
 	public static void main(String[] args) {
 
 		System.out.println(tableSizeFor(129));
+		System.out.println(Calendar.getInstance().getTimeInMillis());
 	}
 
 }

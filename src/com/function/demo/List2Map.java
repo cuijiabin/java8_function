@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -30,6 +31,11 @@ public class List2Map {
 	public void genFieldMapList() {
 
 		Map<Integer, List<Person>> map = pList.stream().collect(Collectors.groupingBy(Person::getSex));
-		System.out.println(map);
+		Map<Integer, String> strMap = map.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue().stream().map(Person::getName).collect(Collectors.joining("&"))));
+		System.out.println(strMap);
+		//map.entrySet().stream().map(e -> e.getKey(), e ->e.getValue().stream().map(Person::getName).collect(Collectors.joining(";")).collect(Collectors.joining(";"));
+
+		Optional<Person> po =pList.stream().filter(p -> p.getId() > 7).sorted((p1, p2) -> p2.getId().compareTo(p1.getId())).findFirst();
+		System.out.println(po.isPresent());
 	}
 }
