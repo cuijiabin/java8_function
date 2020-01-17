@@ -2,9 +2,11 @@ package com.function.demo;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
 
 public class List2List {
 
@@ -46,6 +48,10 @@ public class List2List {
         List<Person> ps = list.stream().flatMap(l -> l.stream()).collect(Collectors.toList());
         ps.forEach(l -> System.out.println(l));
 
+        System.out.println("------------------");
+        // 根据 性别去重
+        List<Person> unique = ps.stream().collect(collectingAndThen(toCollection(() -> new TreeSet<>(Comparator.comparingLong(Person::getSex))), ArrayList::new));
+        unique.forEach(System.out::println);
     }
 
     /**
