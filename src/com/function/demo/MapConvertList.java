@@ -1,11 +1,19 @@
 package com.function.demo;
 
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MapConvertList {
+
+	@Test
+	public void computeIfAbsent(){
+
+	}
+
 
 	public static void main(String[] args) {
 		Person person1 = new Person();

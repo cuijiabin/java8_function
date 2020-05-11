@@ -114,6 +114,9 @@ public class List2Map {
         System.out.println(m == 998);
         System.out.println(StringUtils.isNumeric("-40"));
 
+        Map<Integer, Long> numMap = pList.stream().collect(Collectors.groupingBy(i -> i.getSex(), Collectors.counting()));
+        System.out.println(numMap);
+
     }
 
     @Test

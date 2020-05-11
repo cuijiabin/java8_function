@@ -102,5 +102,8 @@ public class StreamCalculate {
         BigDecimal b1 = new BigDecimal(1.26598877);
         BigDecimal b2 = new BigDecimal(1.26598877);
         System.out.println(Stream.of(b1, b2).reduce(BigDecimal::add).get().setScale(2, BigDecimal.ROUND_HALF_DOWN));
+        b1.add(b2);
+        System.out.println(b1);
+        System.out.println(b1.add(b2));
     }
 }

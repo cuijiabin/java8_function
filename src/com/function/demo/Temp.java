@@ -72,5 +72,11 @@ public class Temp {
         int hours = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         System.out.println(hours);
 
+        Set<Integer> testSet = new HashSet<>();
+        for (int i = 0; i < 10; i++) {
+            System.out.println(testSet.add(10));
+        }
+        System.out.println(testSet.contains(10));
+
     }
 }

@@ -5,7 +5,6 @@ import com.google.common.base.Objects;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class GuavaDemo {
@@ -25,5 +24,6 @@ public class GuavaDemo {
         System.out.println(Objects.equal("",""));
         System.out.println(Objects.equal(null,null));
         System.out.println(CollectionUtils.isEmpty(null));
+
     }
 }
