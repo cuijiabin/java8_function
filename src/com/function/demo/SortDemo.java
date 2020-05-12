@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SortDemo {
 
@@ -36,6 +37,20 @@ public class SortDemo {
         Collections.sort(personList, Comparator.comparingInt(Person::getSex).reversed());
         System.out.println("Sex字段倒序输出");
         personList.forEach(System.out::println);
+
+    }
+
+    /**
+     * 排序操作
+     */
+    @Test
+    public void sortList() {
+
+        List<String> testList = Arrays.asList("123", "789", "永久", "123", "456");
+
+        List<String> list = testList.stream().sorted().collect(Collectors.toList());
+
+        list.forEach(System.out::println);
 
     }
 }

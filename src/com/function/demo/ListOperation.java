@@ -8,7 +8,10 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toCollection;
 
-public class List2List {
+/**
+ * 列表集合的相关操作
+ */
+public class ListOperation {
 
     private List<Person> pList = Arrays.asList(new Person(1L, "person1", 1),
             new Person(2L, "person2", 2),
@@ -20,43 +23,35 @@ public class List2List {
 
     /**
      * 提取对象列表中的字段
+     * 重点：先map然后收集
      */
     @Test
     public void extractField() {
 
         List<Long> list = pList.stream().map(p -> p.getId()).collect(Collectors.toList());
-
-        list.forEach(id -> System.out.println(id));
+        list.forEach(System.out::println);
+        list = pList.stream().map(Person::getId).collect(Collectors.toList());
+        list.forEach(System.out::println);
     }
 
+
+    /**
+     * 根据字段对列表进行去重
+     * 要点：Collectors.collectingAndThen(Collectors.toCollection(
+     */
     @Test
-    public void extractList() {
+    public void removeDuplicateList() {
 
-        // 先转map 然后转list
-        List<List<Person>> list = pList.stream().collect(Collectors.groupingBy(Person::getSex)).values().stream().collect(Collectors.toList());
-        list.forEach(l -> System.out.println(l));
 
-    }
-
-    @Test
-    public void listOfList2List() {
-
-        // 先转map 然后转list
-//        List<List<Person>> list = pList.stream().collect(Collectors.groupingBy(Person::getSex)).values().stream().collect(Collectors.toList());
-//        list.forEach(l -> System.out.println(l));
-//
-//        List<Person> ps = list.stream().flatMap(l -> l.stream()).collect(Collectors.toList());
-//        ps.forEach(l -> System.out.println(l));
-//
-//        System.out.println("------------------");
-//        // 根据 性别去重
+        // 根据 性别去重
         List<Person> unique = pList.stream().collect(collectingAndThen(toCollection(() -> new TreeSet<>(Comparator.comparingLong(Person::getSex))), ArrayList::new));
+        System.out.println("根据性别去重结果");
         unique.forEach(System.out::println);
-        System.out.println("------------------");
+
         List<Person> personList = pList.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getName() + ";" + o.getSex()))), ArrayList::new));
+        System.out.println("根据姓名加性别去重结果");
         personList.forEach(System.out::println);
 
-//        groupBabyInfoList.sort(Comparator.comparing(GroupUserBabyInfo::getCreateTime).reversed());
     }
 
     /**
@@ -69,7 +64,8 @@ public class List2List {
 
         List<String> list = testList.stream().distinct().collect(Collectors.toList());
 
-        list.forEach(id -> System.out.println(id));
+        System.out.println("列表去重结果：");
+        list.forEach(System.out::println);
 
 
         // 获取重复单号
@@ -80,25 +76,8 @@ public class List2List {
                 .map(entry -> entry.getKey())
                 .collect(Collectors.toList());
 
-        System.out.println("+++++++++++++++++++++++++++++");
-        duplicateList.forEach(id -> System.out.println(id));
-
-    }
-
-    // 各种过滤操作
-
-    /**
-     * 排序操作
-     */
-    @Test
-    public void sortList() {
-
-        List<String> testList = Arrays.asList("123", "789", "永久", "123", "456");
-
-        List<String> list = testList.stream().sorted().collect(Collectors.toList());
-
-        list.forEach(id -> System.out.println(id));
-        System.out.println(Integer.parseInt("01"));
+        System.out.println("列表中的重复内容：");
+        duplicateList.forEach(System.out::println);
 
     }
 
