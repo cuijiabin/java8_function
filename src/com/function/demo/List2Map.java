@@ -3,6 +3,7 @@ package com.function.demo;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -87,6 +88,19 @@ public class List2Map {
 
         // TODO 分组后再抽取字段有无其他的优化方法？
 
+    }
+
+    @Test
+    public void testComputeIfAbsent() {
+
+        Map<String, String> resultMap = new HashMap<>();
+        resultMap.put("1", "a");
+        resultMap.put("2", "b");
+        resultMap.put("3", "c");
+
+        String value = resultMap.computeIfAbsent("5", k -> "s");
+        System.out.println(value);
+        System.out.println(resultMap);
     }
 
 }
