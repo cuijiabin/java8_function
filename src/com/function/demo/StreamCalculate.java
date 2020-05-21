@@ -101,6 +101,7 @@ public class StreamCalculate {
     public void testBigDecimal() {
         BigDecimal b1 = new BigDecimal(1.26598877);
         BigDecimal b2 = new BigDecimal(1.26598877);
+        // 四舍五入测试
         System.out.println(Stream.of(b1, b2).reduce(BigDecimal::add).get().setScale(2, BigDecimal.ROUND_HALF_DOWN));
         b1.add(b2);
         System.out.println(b1);
