@@ -2,6 +2,8 @@ package com.function.demo;
 
 import com.alibaba.fastjson.JSON;
 
+import java.util.Date;
+
 public class Person {
 
     private Long id;
@@ -9,6 +11,8 @@ public class Person {
     private String name;
 
     private Integer sex;
+
+    private Date createAt;
 
     public Person() {
     }
@@ -43,6 +47,14 @@ public class Person {
 
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    public Date getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
     @Override

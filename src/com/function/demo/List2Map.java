@@ -86,8 +86,9 @@ public class List2Map {
 
         System.out.println(nameGroupMap);
 
-        // TODO 分组后再抽取字段有无其他的优化方法？
-
+        // 分组后再抽取字段有无其他的优化方法？
+        nameGroupMap = pList.stream().collect(Collectors.groupingBy(Person::getSex, Collectors.mapping(Person::getName, Collectors.toList())));
+        System.out.println(nameGroupMap);
     }
 
     @Test

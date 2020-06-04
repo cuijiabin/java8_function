@@ -20,8 +20,8 @@ public class ClientDemo {
 
     public TransportClient getClient() throws UnknownHostException {
         TransportClient client = new PreBuiltTransportClient(Settings.EMPTY)
-                .addTransportAddress(new TransportAddress(InetAddress.getByName("10.5.97.40"), 9200))
-                .addTransportAddress(new TransportAddress(InetAddress.getByName("10.5.96.195"), 9200))
+                .addTransportAddress(new TransportAddress(InetAddress.getByName("10.5.97.40"), 9300))
+                .addTransportAddress(new TransportAddress(InetAddress.getByName("10.5.96.195"), 9300))
                 .addTransportAddress(new TransportAddress(InetAddress.getByName("10.5.96.200"), 9300));
 
         return client;
