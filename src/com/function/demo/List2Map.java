@@ -1,11 +1,9 @@
 package com.function.demo;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -96,12 +94,44 @@ public class List2Map {
 
         Map<String, String> resultMap = new HashMap<>();
         resultMap.put("1", "a");
-        resultMap.put("2", "b");
-        resultMap.put("3", "c");
+        resultMap.put("2", "a");
+        resultMap.put("3", "a");
+
+        System.out.println(new HashSet<>(resultMap.values()));
 
         String value = resultMap.computeIfAbsent("5", k -> "s");
         System.out.println(value);
         System.out.println(resultMap);
+
+        Map<String, List<String>> resultListMap = new HashMap<>();
+        List<String> stringList = resultListMap.computeIfAbsent("5", k -> new ArrayList<>());
+        stringList.add("m");
+        stringList.add("n");
+        System.out.println(resultListMap);
+
+        System.out.println(BooleanUtils.isTrue(null));
+    }
+
+    @Test
+    public void testRemoveList() {
+
+        List<Integer> ll = new ArrayList<>();
+        ll.add(1);
+        ll.add(2);
+        ll.add(1);
+        ll.add(1);
+
+        Iterator<Integer> xx = ll.iterator();
+        while (xx.hasNext()) {
+            Integer x = xx.next();
+            System.out.println(x);
+            if(x == 2){
+                continue;
+            }
+            xx.remove();
+        }
+
+        System.out.println(ll);
     }
 
 }

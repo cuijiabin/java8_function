@@ -52,5 +52,14 @@ public class SortDemo {
 
         list.forEach(System.out::println);
 
+        System.out.println(1/4);
+        System.out.println(3/4);
+        System.out.println(4/4);
+
+        System.out.println(1%4);
+        System.out.println(3%4);
+        System.out.println(4%4);
+        System.out.println(4-4*4);
+
     }
 }
