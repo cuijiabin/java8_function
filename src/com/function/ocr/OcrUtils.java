@@ -1,7 +1,6 @@
 package com.function.ocr;
 
 import cn.hutool.core.codec.Base64;
-import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
@@ -28,18 +27,7 @@ import java.util.*;
 public class OcrUtils {
 
     public static List<String> ocrImg(byte[] imgData) {
-        int i = Math.abs(UUID.randomUUID().hashCode()) % 4;
-        System.out.println("OCR Engine: " + i);
-        switch (i) {
-            case 0:
-                return bdGeneralOcr(imgData);
-            case 1:
-                return bdAccurateOcr(imgData);
-            case 2:
-                return sogouMobileOcr(imgData);
-            default:
-                return sogouWebOcr(imgData);
-        }
+        return bdAccurateOcr(imgData);
     }
 
     private static List<String> bdGeneralOcr(byte[] imgData) {
@@ -192,16 +180,23 @@ public class OcrUtils {
     }
 
     public static void main(String[] args) {
-        try {
-            File selectedFile = new File("E:\\file\\download\\demo.png");
-            BufferedImage image = ImageIO.read(selectedFile);
-            byte[] bytes = imageToBytes(image);
-            List<String> resultList = ocrImg(bytes);
-            if (CollectionUtils.isNotEmpty(resultList)) {
-                resultList.forEach(System.out::println);
+        List<Integer> convertList = Arrays.asList(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+        for (Integer page : convertList) {
+            try {
+                System.out.println("<==========================" + page + "start==============================>");
+                System.out.println("");
+                File selectedFile = new File("E:\\file\\book\\convert\\cclxpp_" + page + ".jpg");
+                BufferedImage image = ImageIO.read(selectedFile);
+                byte[] bytes = imageToBytes(image);
+                List<String> resultList = bdAccurateOcr(bytes);
+                if (CollectionUtils.isNotEmpty(resultList)) {
+                    resultList.forEach(System.out::println);
+                }
+                System.out.println("<==========================" + page + "end ==============================>");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
     }
 }

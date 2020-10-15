@@ -64,6 +64,6 @@ public class PdfToImage {
     }
 
     public static void main(String[] args) {
-        pdf2png("F:\\File\\download\\pdf", "逻辑学导论+第十一版", "jpg");
+        pdf2png("E:\\file\\book\\convert", "cclxpp", "jpg");
     }
 }
