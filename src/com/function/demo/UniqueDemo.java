@@ -47,5 +47,6 @@ public class UniqueDemo {
         for (String key : testMap.keySet()) {
             System.out.println(key);
         }
+        System.out.println("test node 2");
     }
 }
