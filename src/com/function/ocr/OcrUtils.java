@@ -179,24 +179,41 @@ public class OcrUtils {
         }
     }
 
-    public static void main(String[] args) {
-        List<Integer> convertList = Arrays.asList(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
-        for (Integer page : convertList) {
+    public static void handleList(int start, int end) {
+        for (int i = start; i < end; i++) {
             try {
-                System.out.println("<==========================" + page + "start==============================>");
+                System.out.println("<==========================" + i + "start==============================>");
                 System.out.println("");
-                File selectedFile = new File("E:\\file\\book\\convert\\cclxpp_" + page + ".jpg");
+                File selectedFile = new File("E:\\file\\book\\convert\\mx_" + i + ".jpg");
                 BufferedImage image = ImageIO.read(selectedFile);
                 byte[] bytes = imageToBytes(image);
                 List<String> resultList = bdAccurateOcr(bytes);
                 if (CollectionUtils.isNotEmpty(resultList)) {
                     resultList.forEach(System.out::println);
                 }
-                System.out.println("<==========================" + page + "end ==============================>");
+                System.out.println("");
+                System.out.println("<==========================" + i + "end ==============================>");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
 
+    public static void handleFile(String name) {
+        try {
+            File selectedFile = new File("E:\\file\\download\\纯粹导图\\" + name);
+            BufferedImage image = ImageIO.read(selectedFile);
+            byte[] bytes = imageToBytes(image);
+            List<String> resultList = bdAccurateOcr(bytes);
+            if (CollectionUtils.isNotEmpty(resultList)) {
+                resultList.forEach(System.out::println);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        handleList(300, 378);
     }
 }

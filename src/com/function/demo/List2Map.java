@@ -4,6 +4,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
@@ -31,7 +32,8 @@ public class List2Map {
 
         Map<Long, Person> map = pList.stream().collect(Collectors.toMap(Person::getId, p -> p));
         System.out.println(map);
-
+        map = pList.stream().collect(Collectors.toMap(Person::getId, Function.identity()));
+        System.out.println(map);
         List<Person> personList = Arrays.asList(
                 new Person(1L, "person1", 1),
                 new Person(2L, "person1", 2),
