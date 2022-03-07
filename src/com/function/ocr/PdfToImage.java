@@ -64,6 +64,6 @@ public class PdfToImage {
     }
 
     public static void main(String[] args) {
-        pdf2png("E:\\file\\book\\convert", "cclxpp", "jpg");
+        pdf2png("E:\\file\\book\\convert", "目录", "jpg");
     }
 }

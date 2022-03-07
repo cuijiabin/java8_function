@@ -84,6 +84,13 @@ public class ListOperation {
     @Test
     public void findList() {
 
+        Integer s = null;
+        try {
+            s = Integer.valueOf("xdsfsd");
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        System.out.println(s);
         Optional<Person> op = pList.stream().filter(p -> p.getId() > 3).findAny();
         if (op.isPresent()) {
             System.out.println(op.get());

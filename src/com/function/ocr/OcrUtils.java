@@ -184,7 +184,7 @@ public class OcrUtils {
             try {
                 System.out.println("<==========================" + i + "start==============================>");
                 System.out.println("");
-                File selectedFile = new File("E:\\file\\book\\convert\\mx_" + i + ".jpg");
+                File selectedFile = new File("E:\\file\\book\\convert\\目录_" + i + ".jpg");
                 BufferedImage image = ImageIO.read(selectedFile);
                 byte[] bytes = imageToBytes(image);
                 List<String> resultList = bdAccurateOcr(bytes);
@@ -214,6 +214,6 @@ public class OcrUtils {
     }
 
     public static void main(String[] args) {
-        handleList(300, 378);
+        handleList(4, 5);
     }
 }

@@ -2,13 +2,20 @@ package com.function.demo;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class SortDemo {
+
+    private static final Map<Long, Integer> sortMap = new HashMap<Long, Integer>() {
+        {
+            put(2L, -5);
+            put(1L, -4);
+            put(6L, -3);
+            put(5L, -2);
+            put(4L, -1);
+        }
+    };
 
     @Test
     public void sortByField() {
@@ -38,6 +45,19 @@ public class SortDemo {
         System.out.println("Sex字段倒序输出");
         personList.forEach(System.out::println);
 
+//        Map<Long, Integer> sortMap = new HashMap<>();
+//        sortMap.put(3L,-6);
+//        sortMap.put(2L, -5);
+//        sortMap.put(1L, -4);
+//        sortMap.put(6L, -3);
+//        sortMap.put(5L, -2);
+//        sortMap.put(4L, -1);
+
+
+        Collections.sort(personList, Comparator.comparingInt(v -> sortMap.get(v.getId()) == null ? v.getId().intValue() : sortMap.get(v.getId())));
+        System.out.println("自定义id输出");
+        personList.forEach(System.out::println);
+
     }
 
     /**
@@ -52,14 +72,14 @@ public class SortDemo {
 
         list.forEach(System.out::println);
 
-        System.out.println(1/4);
-        System.out.println(3/4);
-        System.out.println(4/4);
+        System.out.println(1 / 4);
+        System.out.println(3 / 4);
+        System.out.println(4 / 4);
 
-        System.out.println(1%4);
-        System.out.println(3%4);
-        System.out.println(4%4);
-        System.out.println(4-4*4);
+        System.out.println(1 % 4);
+        System.out.println(3 % 4);
+        System.out.println(4 % 4);
+        System.out.println(4 - 4 * 4);
 
     }
 }

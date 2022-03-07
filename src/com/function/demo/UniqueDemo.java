@@ -2,10 +2,7 @@ package com.function.demo;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -48,5 +45,33 @@ public class UniqueDemo {
             System.out.println(key);
         }
         System.out.println("test node 2");
+
+        // 此种情况下会抛出错误！
+//        List<Integer> ll = null;
+        List<Integer> ll = new ArrayList<>();
+        for (Integer i : ll) {
+            System.out.println(i);
+        }
+
+        List<Integer> ttt = new ArrayList<>();
+        ttt.add(1);
+        ttt.add(2);
+        ttt.add(3);
+        ttt.add(4);
+        ttt.add(5);
+
+        List<Integer> sub =  ttt.subList(2,5);
+        sub.forEach(System.out::println);
+
+        Map<Integer, String> shipPackClassMap = new HashMap<>();
+        shipPackClassMap.put(1, "A");
+        shipPackClassMap.put(2, "A");
+
+        long num = shipPackClassMap.values().stream().distinct().count();
+        System.out.println(shipPackClassMap.values().size());
+        System.out.println(num);
+        Set<String> shipPackClassSet = shipPackClassMap.values().stream().collect(Collectors.toSet());
+        System.out.println(shipPackClassSet);
+
     }
 }

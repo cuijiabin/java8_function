@@ -89,6 +89,10 @@ public class List2Map {
         // 分组后再抽取字段有无其他的优化方法？
         nameGroupMap = pList.stream().collect(Collectors.groupingBy(Person::getSex, Collectors.mapping(Person::getName, Collectors.toList())));
         System.out.println(nameGroupMap);
+
+
+        Map<Integer, Map<String, Long>> groupMap = pList.stream().collect(Collectors.groupingBy(Person::getSex, Collectors.toMap(Person::getName, Person::getId, (o, n) -> o)));
+        System.out.println(groupMap);
     }
 
     @Test
@@ -127,7 +131,7 @@ public class List2Map {
         while (xx.hasNext()) {
             Integer x = xx.next();
             System.out.println(x);
-            if(x == 2){
+            if (x == 2) {
                 continue;
             }
             xx.remove();

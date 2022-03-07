@@ -3,9 +3,7 @@ package com.function.demo;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,6 +29,8 @@ public class StreamCalculate {
     public void sumCal() {
         int result = Stream.of(1, 2, 3, 4, 5).reduce(0, (x, y) -> x + y).intValue();
         System.out.println(result);
+
+        Stream.of(1, 2, 3, 4, 5).mapToInt(s -> s.intValue()).sum();
     }
 
     @Test
@@ -106,5 +106,29 @@ public class StreamCalculate {
         b1.add(b2);
         System.out.println(b1);
         System.out.println(b1.add(b2));
+    }
+
+    @Test
+    public void testRetainAll() {
+        Set<Integer> aSet = new HashSet<Integer>() {{
+            add(1);
+            add(2);
+            add(3);
+        }};
+
+        Set<Integer> bSet = new HashSet<Integer>() {{
+            add(4);
+            add(5);
+            add(6);
+        }};
+
+        Set<Integer> cSet = new HashSet<Integer>() {{
+            add(2);
+            add(3);
+            add(4);
+        }};
+
+        System.out.println(bSet.retainAll(aSet));
+        System.out.println(cSet.retainAll(aSet));
     }
 }
